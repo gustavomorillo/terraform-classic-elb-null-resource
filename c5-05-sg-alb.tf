@@ -1,4 +1,4 @@
-module "security-group_elb" {
+module "security-group_alb" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "4.17.2"
   # insert the 2 required variables here
@@ -8,15 +8,8 @@ module "security-group_elb" {
 
   ingress_cidr_blocks = ["0.0.0.0/0"]
   ingress_rules       = ["http-80-tcp"]
-  ingress_with_cidr_blocks = [
-    {
-      from_port   = 81
-      to_port     = 81
-      protocol    = "tcp"
-      description = "protocol for http"
-      cidr_blocks = "0.0.0.0/0"
-    },
-  ]
+  egress_rules        = ["all-all"]
+
 
   tags = local.common_tags
 }
