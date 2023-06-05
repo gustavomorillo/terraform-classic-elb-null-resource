@@ -9,18 +9,9 @@ module "security-group-private-instance" {
 
 
   ingress_cidr_blocks = [module.vpc.vpc_cidr_block]
-  ingress_rules       = ["ssh-tcp"]
-  egress_rules        = ["all-all"]
-
-  ingress_with_cidr_blocks = [
-    {
-      from_port   = 80
-      to_port     = 80
-      protocol    = "tcp"
-      description = "protocol for http"
-      cidr_blocks = "0.0.0.0/0"
-    },
-  ]
+  ingress_rules = ["ssh-tcp", "http-80-tcp"]
+  # Egress Rule - all-all open
+  egress_rules = ["all-all"]
 
 
 
