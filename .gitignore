@@ -1,2 +1,3 @@
 .t*
 private-key
+terraform.tfstate
